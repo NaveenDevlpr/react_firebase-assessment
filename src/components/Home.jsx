@@ -105,12 +105,12 @@ const Home = () => {
   return (
     <div className='ring-1 w-full ring-gray-200 rounded-2xl p-6'>
 
-        <div className='flex flex-row items-center justify-between'>
+        <div className='flex md:flex-row flex-col md:items-center md:justify-between'>
             <h2 className='text-gray-600 font-bold text-2xl'>
               Employee Details :
             </h2>
 
-            <div className='flex flex-row items-center space-x-2'>
+            <div className='lg:flex grid grid-cols-2 lg:flex-row gap-4 items-center mt-4 lg:mt-0 lg:space-x-2'>
             
                 <Sort headers={headers} setSort={setSort} />
 
