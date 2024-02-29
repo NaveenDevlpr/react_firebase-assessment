@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import app from '../firebaseConfig'
 import {getDatabase,push,set,ref} from 'firebase/database'
+import { Link } from 'react-router-dom'
 
 const AddForm = () => {
 
@@ -29,17 +30,28 @@ const AddForm = () => {
         role:role
       }).then(()=>{
         console.log('submitted successfully')
+        setAge('')
+        setDepartment('')
+        setID('')
+        setName('')
+        setRole('')
+        alert('Your Data has been submitted')
       }).catch((error)=>{
         console.log(error.message)
       })
     }
     else{
-      console.log('you have left a field empty')
+      alert('You have left a field empty')
     }
   }
   return (
     <div className='max-w-md w-full'>
-      <h2 className='text-gray-600 text-2xl font-medium mb-4 text-center'>Add Details to Table</h2>
+      <div className='flex flex-row justify-between items-center mb-4'>
+      <h2 className='text-gray-600 text-2xl font-medium text-center'>Add Details to Table</h2>
+      <div className='rounded-lg border-2 border-black py-[6px] px-4 cursor-pointer'>
+        <Link to='/'><h2 className='text-black text-sm font-normal'>Back Home</h2></Link>
+      </div>
+      </div>
         <form 
         onSubmit={(e)=>{submitData(e)}}
         className='w-full rounded-lg bg-white ring-1 ring-gray-300 shadow-lg px-4 py-4'>
