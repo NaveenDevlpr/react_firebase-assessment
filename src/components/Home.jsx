@@ -86,10 +86,10 @@ const Home = () => {
                 <SearchBox search={search} setSearch={setSearch} getData={getData}/> {/* this is the search bar component */}
                 
 
-                <div className='px-3 py-3 w-full bg-purple-500 rounded-lg text-white font-medium flex flex-row items-center space-x-2'>
-                  <Link className='text-sm' to='/add'>Add Data</Link>
-                  <IoMdAdd/>
-                </div>
+                <Link to='/add' className='px-3 py-3 w-full bg-purple-500 rounded-lg text-white font-medium flex flex-row items-center space-x-2'>
+                  <div className='text-sm w-full' >Add Data</div>
+                  <IoMdAdd className='w-5 h-5'/>
+                </Link>
 
 
                 <Dropdown result={result} setNoOfPages={setNoOfPages}/>  {/* this is the dropdown menu component */}
@@ -109,9 +109,9 @@ const Home = () => {
                       <FaChevronLeft />
                     </span>
                 {
-                  [...Array(Math.ceil(result.length/noOfPages))].map((e,i)=>{
+                [...Array(Math.ceil(result.length/noOfPages))].map((e,i)=>{
                     return(
-                      <span key={i} className={`py-2 px-4 cursor-pointer ${page===i+1?'bg-purple-500 rounded-lg text-white':''}`} onClick={()=>{SelectedPage(i+1)}}>{i+1}</span>
+                      <span key={i} className={`py-2 px-4 font-medium cursor-pointer ${page===i+1?'bg-purple-500 rounded-lg text-white':''}`} onClick={()=>{SelectedPage(i+1)}}>{i+1}</span>
                     )
                   })
                 }

@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import app from '../firebaseConfig'
 import {getDatabase,push,set,ref} from 'firebase/database'
 import { Link } from 'react-router-dom'
-
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 const AddForm = () => {
 
-/*  const [data,setData]=useState({
-    name:'',age:'',department:'',role:''
-  })*/
+
+
+  const [loading ,setLoading]=useState(false)
 
   const[id,setID]=useState('')
   const [name,setName]=useState('')
@@ -16,6 +16,7 @@ const AddForm = () => {
   const [role,setRole]=useState('')
 
   const submitData=async(e)=>{
+    setLoading(true)
     e.preventDefault()
     if(name && age && department && role){
      
@@ -35,6 +36,7 @@ const AddForm = () => {
         setID('')
         setName('')
         setRole('')
+        setLoading(false)
         alert('Your Data has been submitted')
       }).catch((error)=>{
         console.log(error.message)
@@ -111,11 +113,17 @@ const AddForm = () => {
             className='bg-gray-100 appearance-none border-2 border-gray-200/80 rounded w-full py-3 px-4 text-gray-600 leading-tight focus:outline-none focus:bg-white focus:border-purple-500'></input>
            </div>
            <div className='mb-4 flex items-center justify-center'>
-            <button 
-            type='submit'
-            className='w-[80px] rounded-lg py-2 px-4 text-center bg-purple-500 text-white'>
-              Add
-            </button>
+           {
+            loading ? (
+            <AiOutlineLoading3Quarters className='animate-spin h-5 w-5'/>
+            ):(
+              <button 
+              type='submit'
+              className='w-[80px] rounded-lg py-2 px-4 text-center bg-purple-500 text-white'>
+                Add
+              </button>
+            )
+           }
            </div>
         </form>
     </div>

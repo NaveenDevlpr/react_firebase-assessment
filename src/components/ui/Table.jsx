@@ -4,11 +4,11 @@ const Table = ({headers,result,page,noOfPages}) => {
   return (
     <div className='overflow-x-auto mt-4'>
     <table className='w-full text-left table-auto'>
-      <thead>
-        <tr className='text-md text-gray-600'>
+      <thead className='text-md text-gray-600'>
+        <tr className=''>
           {
             headers.map((e,i)=>{
-              return (
+              return(
                 <th key={i} className='px-4 py-6'>{e}</th>
               )
             })

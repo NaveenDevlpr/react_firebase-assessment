@@ -1,5 +1,6 @@
 import React from 'react'
-import {IoIosSearch} from 'react-icons/io'
+import { IoSearch } from "react-icons/io5";
+
 const SearchBox = ({search,setSearch,getData}) => {
   return (
     <div className="relative">
@@ -9,11 +10,9 @@ const SearchBox = ({search,setSearch,getData}) => {
     onChange={(e)=>{setSearch(e.target.value)}}
     />
     {
-    
-      <div className="absolute inset-y-0 right-0 flex items-center p-4 cursor-pointer bg-purple-500 rounded-lg"  onClick={()=>{getData()}}>
-        <IoIosSearch className='text-white'/>
+      <div className=" text-white absolute inset-y-0 right-0 flex items-center p-4 cursor-pointer bg-purple-500 rounded-lg"  onClick={()=>{getData()}}>
+        <IoSearch/>
       </div>
-      
     }
   </div>
   )
