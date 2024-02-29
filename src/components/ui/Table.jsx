@@ -1,9 +1,12 @@
 import React from 'react'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 const Table = ({headers,result,page,noOfPages}) => {
   return (
     <div className='overflow-x-auto mt-4'>
-    <table className='w-full text-left table-auto'>
+    {
+      result.length>0 ? (
+<table className='w-full text-left table-auto'>
       <thead className='text-md text-gray-600'>
         <tr className=''>
           {
@@ -34,6 +37,13 @@ const Table = ({headers,result,page,noOfPages}) => {
           }
       </tbody>
     </table>
+      ):
+      (
+       <div className='flex flex-row items-center justify-center'>
+         <AiOutlineLoading3Quarters className='animate-spin h-10 w-10'/>
+       </div>
+      )
+    }
 </div>
   )
 }
