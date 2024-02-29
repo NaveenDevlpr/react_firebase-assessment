@@ -4,7 +4,7 @@ import { getDatabase,get,ref } from 'firebase/database'
 import { Link } from 'react-router-dom'
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
-
+import { IoMdAdd } from "react-icons/io";
 
 const Home = () => {
 
@@ -39,17 +39,18 @@ const Home = () => {
             </h2>
 
             <div className='flex flex-row items-center space-x-2'>
-                <button className='px-2 py-2 w-[50px] bg-purple-500 rounded-lg text-white'>
-                <Link className='text-sm' to='/add'>Add</Link>
-                </button>
+                <div className='px-3 py-3 w-full bg-purple-500 rounded-lg text-white font-medium flex flex-row items-center space-x-2'>
+                <Link className='text-sm' to='/add'>Add Data</Link>
+                <IoMdAdd/>
+                </div>
                 <select id="page" name="page" 
                 onChange={(e)=>{setNoOfPages(e.target.value)}}
                 class="block w-full px-4 py-2 border rounded-md bg-white shadow-sm focus:outline-none focus:border-pruple-500 focus:ring focus:ring-purple-500">
                   <option>Select Page</option>
                {
-                    dropdownValues.map((e,i)=>{
+                    [...Array(result.length-1)].map((e,i)=>{
                       return(
-                        <option value={e} className='text-gray-600'>{e}</option>
+                        <option value={i} className='text-gray-600'>{i+1}</option>
                       )
                     })
                }
@@ -92,18 +93,18 @@ const Home = () => {
         </div>
         {
           result.length>0 && (
-            <div className='w-full flex flex-row items-center justify-center px-2'>
-                <span>
+            <div className='w-full flex flex-row items-center justify-center mt-6'>
+                <span className='px-4'>
                   <FaChevronLeft/>
                 </span>
                 {
-                  [...Array(Math.floor(result.length/noOfPages))].map((e,i)=>{
+                  [...Array(Math.ceil(result.length/noOfPages))].map((e,i)=>{
                     return(
-                      <span key={i} className={`p-4 cursor-pointer ${page===i+1?'bg-purple-500 rounded-lg text-white':''}`} onClick={()=>{setPage(i+1)}}>{i+1}</span>
+                      <span key={i} className={`py-2 px-4 cursor-pointer ${page===i+1?'bg-purple-500 rounded-lg text-white':''}`} onClick={()=>{setPage(i+1)}}>{i+1}</span>
                     )
                   })
                 }
-                <span><FaChevronRight/></span>
+                <span className='px-4'><FaChevronRight/></span>
             </div>
           )
         }

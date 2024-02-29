@@ -17,15 +17,7 @@ const AddForm = () => {
   const submitData=async(e)=>{
     e.preventDefault()
     if(name && age && department && role){
-     /* setData(prevData => ({
-        ...prevData,
-        name,
-        age,
-        department,
-        role
-      }));*/
-
-      //console.log(data)
+     
     
       const db=getDatabase(app)
       const docRef=push(ref(db,'employee'))
