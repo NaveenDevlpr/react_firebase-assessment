@@ -21,7 +21,7 @@ const Home = () => {
   const [result,setResult]=useState([]) //array stores the resulting fetched data
 
 
-  const [noOfPages,setNoOfPages]=useState(4)  //Number of rows to be displayed at once
+  const [noOfPages,setNoOfPages]=useState(5)  //Number of rows to be displayed at once
 
 
   const [page,setPage]=useState(1)  // number of pages based upon the number of rows to be displayed
@@ -59,7 +59,7 @@ const Home = () => {
       if(sort==='age')
       {
         sortedVal=[...result].sort((a,b)=>a.age-b.age)
-        console.log(sortedVal)
+        
       }
       if(sort==='name')
       {
