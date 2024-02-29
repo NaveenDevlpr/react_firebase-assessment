@@ -111,7 +111,7 @@ const Home = () => {
             </h2>
 
             <div className='flex flex-row items-center space-x-2'>
-
+            
                 <Sort headers={headers} setSort={setSort} />
 
                 <SearchBox search={search} setSearch={setSearch} getData={getData}/> {/* this is the search bar component */}
