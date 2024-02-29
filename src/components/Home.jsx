@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import app from '../firebaseConfig'
-import { getDatabase,get,ref,query,orderByChild, equalTo} from 'firebase/database'
+import { getDatabase,get,ref,query,orderByChild, equalTo, orderByKey, limitToFirst,limitToLast} from 'firebase/database'
 import { Link } from 'react-router-dom'
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
@@ -8,13 +8,14 @@ import { IoMdAdd } from "react-icons/io";
 import SearchBox from './ui/SearchBox';
 import Dropdown from './ui/Dropdown';
 import Table from './ui/Table';
+import Sort from './ui/Sort';
 
 
 
 const Home = () => {
 
 
-  const headers=['Employee ID','Name','Age','Department','Role']  //headers for the table
+  const headers=['ID','Name','Age','Department','Role']  //headers for the table
 
 
   const [result,setResult]=useState([]) //array stores the resulting fetched data
@@ -29,6 +30,8 @@ const Home = () => {
   const [search,setSearch]=useState(null)  //stores the searched text from the input box
 
 
+  const [sort,setSort]=useState(null)
+  
   //this function fetches the data from the Firebase realtime databse, it aslo filters the data based upon the search query(Depending upon the IF ELSE statement)
   const getData=async()=>{
 
@@ -37,6 +40,7 @@ const Home = () => {
 
     if(search)
     {
+      setSort(null)
             const combinedQuery = query(docRef, orderByChild('name'), equalTo(search))    //this query id used to filter the data when name is equal to the searched text.
 
             await get(combinedQuery).then((snapshot) => {
@@ -50,7 +54,31 @@ const Home = () => {
             console.error(error);
           });
     }
-    
+    else if(sort){                                      //sorting functionality based on the columns
+      var sortedVal;
+      if(sort==='age')
+      {
+        sortedVal=[...result].sort((a,b)=>a.age-b.age)
+        console.log(sortedVal)
+      }
+      if(sort==='name')
+      {
+        sortedVal=[...result].sort((a,b)=>a.name.localeCompare(b.name))
+      }
+      if(sort==='department')
+      {
+        sortedVal=[...result].sort((a,b)=>a.department.localeCompare(b.department))
+      }
+       if(sort==='role')
+      {
+        sortedVal=[...result].sort((a,b)=>a.role.localeCompare(b.role))
+      }
+      if(sort==='id')
+      {
+        sortedVal=[...result].sort((a,b)=>a.id.localeCompare(b.id))
+      }
+     setResult(sortedVal)
+    }
     else
     {
           const snapshot=await get(docRef)
@@ -72,7 +100,7 @@ const Home = () => {
   useEffect(()=>{
     //once the compoment is mounted , tbis function will be called first.
     getData()
-  },[search])
+  },[search,sort])
 
   return (
     <div className='ring-1 w-full ring-gray-200 rounded-2xl p-6'>
@@ -83,6 +111,9 @@ const Home = () => {
             </h2>
 
             <div className='flex flex-row items-center space-x-2'>
+
+                <Sort headers={headers} setSort={setSort} />
+
                 <SearchBox search={search} setSearch={setSearch} getData={getData}/> {/* this is the search bar component */}
                 
 
