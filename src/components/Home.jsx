@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import app from '../firebaseConfig'
-import { getDatabase,get,ref,query,startAt, orderByChild, equalTo} from 'firebase/database'
+import { getDatabase,get,ref,query,orderByChild, equalTo} from 'firebase/database'
 import { Link } from 'react-router-dom'
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
@@ -14,15 +14,20 @@ import Table from './ui/Table';
 const Home = () => {
 
 
-  const headers=['Employee ID','Name','Age','Department','Role']
-  const [result,setResult]=useState([])
+  const headers=['Employee ID','Name','Age','Department','Role']  //headers for the table
 
 
-  const [noOfPages,setNoOfPages]=useState(4)
-  const [page,setPage]=useState(1)
+  const [result,setResult]=useState([]) //array stores the resulting fetched data
 
 
-  const [search,setSearch]=useState(null)
+  const [noOfPages,setNoOfPages]=useState(4)  //Number of rows to be displayed at once
+
+
+  const [page,setPage]=useState(1)  // number of pages based upon the number of rows to be displayed
+
+
+  const [search,setSearch]=useState(null)  //stores the searched text from the input box
+
 
   //this function fetches the data from the Firebase realtime databse, it aslo filters the data based upon the search query(Depending upon the IF ELSE statement)
   const getData=async()=>{
