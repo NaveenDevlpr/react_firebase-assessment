@@ -48,6 +48,7 @@ const Home = () => {
           
               setResult(Object.values(snapshot.val()))
             } else {
+              
               console.log("No data found");
             }
           }).catch((error) => {

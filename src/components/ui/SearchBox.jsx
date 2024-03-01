@@ -4,7 +4,7 @@ import { IoSearch } from "react-icons/io5";
 const SearchBox = ({search,setSearch,getData}) => {
   return (
     <div className="relative">
-    <input type="text" placeholder="Search by Name..." 
+    <input type="text" placeholder="Search by Fullname..." 
     className="bg-white focus:outline-none md:w-[300px] focus:shadow-outline focus:ring-1 focus:ring-purple-500 border border-gray-400/80 rounded-lg py-[10px] px-4 block w-full appearance-none leading-normal"
     value={search}
     onChange={(e)=>{setSearch(e.target.value)}}
