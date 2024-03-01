@@ -12,8 +12,6 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID*/
-
-
   
   apiKey: "AIzaSyDMbBrS1aA_bgdHve-PbFPrYyBO0_Ynon4",
   authDomain: "react-firebase-assessment.firebaseapp.com",
